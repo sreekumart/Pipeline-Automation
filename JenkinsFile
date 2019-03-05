@@ -1,0 +1,39 @@
+pipeline {
+    agent any
+
+stages{
+        stage('DTFILEPP'){
+            steps {
+                sh "echo filecheck"
+            }
+        }
+		
+		stage('DTLEPSKU'){
+            steps {
+                sh "echo DTLEPSKU"
+            }
+        }
+
+        stage ('POST-DTLEPSKU'){
+            parallel{
+                stage ('DTLIBP01'){
+                    steps {
+                        sh "echo DTLIBP01"
+                    }
+                }
+
+				stage ('DTLEP3SF'){
+                    steps {
+                        sh "echo DTLEP3SF"
+                    }
+                }
+				
+                stage ('DTLEPCOL'){
+                    steps {
+                        sh "echo DTLEPCOL"
+                    }
+                }
+            }
+        }
+    }
+}

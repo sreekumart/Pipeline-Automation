@@ -37,6 +37,13 @@ stages{
         }
 		
 		stage('DTLEPREC'){
+			steps {
+                        sh "echo DTLEPREC"
+            }
+		
+		}
+
+		stage('POST-DTLEPREC'){
 		
 			parallel{
 				stage('DTLEPSEO'){

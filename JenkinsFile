@@ -18,7 +18,7 @@ stages{
             parallel{
                 stage ('DTLIBP01'){
                     steps {
-                        sh "echo DTLIBP01"
+                        sh "/c/Users/Stuliche/Desktop/JenkinsFile/Pipeline-Automation/scripts/hello.sh"
                     }
                 }
 

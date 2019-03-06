@@ -1,0 +1,18 @@
+pipeline{
+	agent any
+	
+stages{
+
+	stage('DTLETLOT'){
+		steps{
+			sh "echo DTLETLOT"
+		}
+	}
+	
+	stage('DTLEPPRC'){
+		steps{
+			sh "echo DTLETLOT"
+		}
+	}
+}
+}

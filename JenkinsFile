@@ -4,7 +4,7 @@ pipeline {
 stages{
         stage('DTFILEPP'){
             steps {
-                sh "echo filecheck"
+                sh "echo DTFILEPP"
             }
         }
 		
@@ -35,5 +35,24 @@ stages{
                 }
             }
         }
+		
+		stage('DTLEPREC'){
+		
+			parallel{
+				stage('DTLEPSEO'){
+					steps {
+						sh "echo DTLEPSEO"
+					}
+				}
+				
+				stage('EXT-DTLEPLOT'){
+					steps{
+						build (job: 'DTPPENDBRANCH-1', wait: false)
+					}
+				}
+			}
+		
+		
+		}
     }
 }

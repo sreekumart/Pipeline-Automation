@@ -1,0 +1,25 @@
+pipeline{
+	agent any
+	
+stages{
+
+	stage('DTLEPPAE'){
+		steps{
+			sh "echo DTLEPPAE"
+		}
+	}
+	
+	stage('DTLEPPPC'){
+		steps{
+			sh "echo DTLEPPPC"
+		}
+	}
+	
+	stage('DTLEPTAX'){
+		steps{
+			sh "echo DTLEPTAX"
+		}
+	}
+	
+}
+}

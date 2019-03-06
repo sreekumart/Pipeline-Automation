@@ -43,6 +43,12 @@ stages{
 					steps {
 						sh "echo DTLEPSEO"
 					}
+					post {
+						success {
+							build (job: 'DTPPENDBRANCH-2', wait: false)
+						}
+					}
+
 				}
 				
 				stage('EXT-DTLEPLOT'){

@@ -14,27 +14,27 @@ stages{
             }
         }
 
-        stage ('POST-DTLEPSKU'){
+        /***stage ('POST-DTLEPSKU'){
             parallel{
-                'DTLIBP01'{
+                stage ('DTLIBP01'){
                     steps {
                         sh "/c/Users/Stuliche/Desktop/JenkinsFile/Pipeline-Automation/scripts/hello.sh"
                     }
                 }
 
-				'DTLEP3SF'{
+				stage ('DTLEP3SF'){
                     steps {
                         sh "echo DTLEP3SF"
                     }
                 }
 				
-                'DTLEPCOL'{
+                stage ('DTLEPCOL'){
                     steps {
                         sh "echo DTLEPCOL"
                     }
                 }
             }
-        }
+        }***/
 		
 		stage('DTLEPREC'){
 			steps {

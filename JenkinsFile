@@ -4,15 +4,18 @@ pipeline {
 stages{
         stage('DTFILEPP'){
             steps {
-                sh "echo DTFILEPP"
+				sh "ssh -i /c/Users/Stuliche/.jenkins/privatekey/secret.key akumar39@lena088.jcpenney.com"
+                sh "/home/akumar39/jenkins/jobs/step1.sh"
+				sh "echo exiting"
+				sh "exit"
             }
         }
 		
-		stage('DTLEPSKU'){
+		/**stage('DTLEPSKU'){
             steps {
                 sh "echo DTLEPSKU"
             }
-        }
+        }**/
 
         /***stage ('POST-DTLEPSKU'){
             parallel{

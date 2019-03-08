@@ -43,7 +43,7 @@ stages{
 		
 		}
 
-		stage('POST-DTLEPREC'){
+		/***stage('POST-DTLEPREC'){
 		
 			parallel{
 				stage('DTLEPSEO'){
@@ -66,6 +66,6 @@ stages{
 			}
 		
 		
-		}
+		}***/
     }
 }

@@ -4,9 +4,7 @@ pipeline {
 stages{
         stage('DTFILEPP'){
             steps {
-				sh "ssh -i /c/Users/Stuliche/.jenkins/privatekey/secret.key akumar39@lena088.jcpenney.com "
-                sh "ssh akumar39@lena088.jcpenney.com /home/akumar39/jenkins/jobs/step1.sh"
-				sh "echo exiting"
+				sh "ssh -i /c/Users/Stuliche/.jenkins/privatekey/secret.key akumar39@lena088.jcpenney.com './jenkins/jobs/step1.sh' "
 				sh "ssh akumar39@lena088.jcpenney.com exit"
             }
         }

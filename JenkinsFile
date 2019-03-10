@@ -9,13 +9,14 @@ stages{
             }
         }
 		
-		/**stage('DTLEPSKU'){
+		stage('DTLEPSKU'){
             steps {
-                sh "echo DTLEPSKU"
+                sh "ssh -i /c/Users/Stuliche/.jenkins/privatekey/secret.key akumar39@lena088.jcpenney.com './jenkins/jobs/step1.sh'"
+				sh "ssh -i /c/Users/Stuliche/.jenkins/privatekey/secret.key akumar39@lena088.jcpenney.com exit"
             }
-        }**/
+        }
 
-        /***stage ('POST-DTLEPSKU'){
+        stage ('POST-DTLEPSKU'){
             parallel{
                 stage ('DTLIBP01'){
                     steps {
@@ -25,20 +26,21 @@ stages{
 
 				stage ('DTLEP3SF'){
                     steps {
-                        sh "echo DTLEP3SF"
+                        build (job: 'DTLEPS3F', wait: false,propagate: false)
                     }
                 }
 				
                 stage ('DTLEPCOL'){
                     steps {
-                        sh "echo DTLEPCOL"
+						sh "echo this job will fail"
+                        sh "exit 1"
                     }
                 }
             }
-        }***/
+        }
 		
 		
-		stage ('POST-DTLEPSKU'){
+		/***stage ('POST-DTLEPSKU'){
             parallel{
 				stage ('DTLEPCOL'){
                     steps {
@@ -55,7 +57,7 @@ stages{
 		
 		}
 
-		/***stage('POST-DTLEPREC'){
+		stage('POST-DTLEPREC'){
 		
 			parallel{
 				stage('DTLEPSEO'){

@@ -10,8 +10,9 @@ stages{
 			when {
 				expression {
 					//sh "cat ${env.FILEPATH} | grep 'DTFILEPP' | awk -F ':' '{ print $2 }' > //"${env.RESULTPATH}/DTFILEPP.txt\"\"
-					sh "cat ${env.FILEPATH} | grep 'DTFILEPP' | awk -F ':' '{ print \$2 }' > ${env.RESULTPATH}/DTFILEPP"
-					RESULT=readFile("\\c\Users\\Stuliche\\Desktop\\JenkinsFile\\Pipeline-Automation\\scripts\\DTFILEPP").trim()
+					sh "cat ${env.FILEPATH} | grep 'DTFILEPP' | awk -F ':' '{ print \$2 }' > DTFILEPP"
+					sh "pwd"
+					RESULT=readFile('DTFILEPP').trim()
 					return ${RESULT} != 'SUCCESS';
 				}
 			}

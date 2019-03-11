@@ -9,8 +9,9 @@ stages{
 			
 			when {
 				expression {
-					sh "cat ${env.FILEPATH} | grep "DTFILEPP" |awk -F ':' '{ print $2 }' > DTFILEPP"
-					result = readFile('commandResult').trim()
+					//sh "cat ${env.FILEPATH} | grep "DTFILEPP" |awk -F ':' '{ print $2 }' > DTFILEPP"
+					sh "cat ${env.FILEPATH} > DTFILEPP"
+					result = readFile('DTFILEPP').trim()
 					return result != 'SUCCESS';
 
 				}

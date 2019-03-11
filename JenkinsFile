@@ -2,6 +2,7 @@ pipeline {
     agent any
 	environment {
 		FILEPATH = "/c/Users/Stuliche/Desktop/JenkinsFile/Pipeline-Automation/scripts/jobFlag.txt"
+		RESULTPATH = "/c/Users/Stuliche/Desktop/JenkinsFile/Pipeline-Automation/scripts"
 		RESULT = "NONE"
 	}
 stages{
@@ -9,9 +10,9 @@ stages{
 			
 			when {
 				expression {
-					sh "result=$(cat ${env.FILEPATH} | grep 'DTFILEPP' |awk -F ':' '{ print $2 }')"
+					sh "cat ${env.FILEPATH} | grep 'DTFILEPP' |awk -F ':' '{ print $2 }') > ${env.RESULTPATH}/DTFILEPP"
 					//sh "cat ${env.FILEPATH} | grep 'DTFILEPP'"
-					//result = readFile('DTFILEPP').trim()
+					result = readFile('DTFILEPP').trim()
 					return ${env.RESULT} != 'SUCCESS';
 				}
 			}

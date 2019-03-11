@@ -11,7 +11,7 @@ stages{
 			when {
 				expression {
 					//sh "cat ${env.FILEPATH} | grep 'DTFILEPP' |awk -F ':' '{ print $2 }' > //"${env.RESULTPATH}/DTFILEPP.txt\"\"
-					sh """${env.RESULT}=cat ${env.FILEPATH} | grep 'DTFILEPP' """
+					sh """${env.RESULT}=(cat ${env.FILEPATH} | grep 'DTFILEPP')"""
 					return ${env.RESULT} != 'SUCCESS';
 				}
 			}

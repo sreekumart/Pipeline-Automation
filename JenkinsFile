@@ -29,11 +29,15 @@ stages{
                 }
 
 				stage ('DTLEP3SF'){
-						b = build (job: 'DTLEPS3F', wait: false,propagate: false).result
-						if(b == 'FAILURE') {
-							echo "First job failed"
-							currentBuild.result = 'UNSTABLE' // of FAILURE
-						}
+                    steps {
+						script {
+							b = build (job: 'DTLEPS3F', wait: false,propagate: false).result
+							if(b == 'FAILURE') {
+								echo "First job failed"
+								currentBuild.result = 'UNSTABLE' // of FAILURE
+							}
+                        }
+                    }
                 }
 				
                 stage ('DTLEPCOL'){

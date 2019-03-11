@@ -2,13 +2,16 @@ pipeline {
     agent any
 	environment {
 		FILEPATH = "/c/Users/Stuliche/Desktop/JenkinsFile/Pipeline-Automation/scripts/jobFlag.txt"
+		RESULT = "NONE"
 	}
 stages{
         stage('DTFILEPP'){
 			
 			when {
 				expression {
-					return true;
+					sh "${env.RESULT}=$(cat jobFlag.txt | grep "DTFILEPP" |awk -F ':' '{ print $2 }')"
+					return env.RESULT != 'SUCCESS';
+
 				}
 			}
             steps {

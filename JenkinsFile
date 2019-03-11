@@ -3,7 +3,6 @@ pipeline {
 	environment {
 		FILEPATH = "/c/Users/Stuliche/Desktop/JenkinsFile/Pipeline-Automation/scripts/jobFlag.txt"
 		RESULTPATH = "/c/Users/Stuliche/Desktop/JenkinsFile/Pipeline-Automation/scripts"
-		RESULT = "NONE"
 	}
 stages{
         stage('DTFILEPP'){
@@ -11,8 +10,8 @@ stages{
 			when {
 				expression {
 					//sh "cat ${env.FILEPATH} | grep 'DTFILEPP' | awk -F ':' '{ print $2 }' > //"${env.RESULTPATH}/DTFILEPP.txt\"\"
-					sh "cat ${env.FILEPATH} | grep 'DTFILEPP' | awk -F ':' '{ print \$2 }'"
-					//return ${env.RESULT} != 'SUCCESS';
+					sh "{RESULT}=(cat ${env.FILEPATH} | grep 'DTFILEPP' | awk -F ':' '{ print \$2 }')"
+					return ${RESULT} != 'SUCCESS';
 				}
 			}
             steps {

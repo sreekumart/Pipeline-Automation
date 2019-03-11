@@ -1,12 +1,22 @@
 pipeline {
     agent any
-
+	environment {
+		FILEPATH = "/c/Users/Stuliche/Desktop/JenkinsFile/Pipeline-Automation/scripts/jobFlag.txt"
+	}
 stages{
         stage('DTFILEPP'){
             steps {
 				sh "ssh -i /c/Users/Stuliche/.jenkins/privatekey/secret.key akumar39@lena088.jcpenney.com './jenkins/jobs/step1.sh'"
 				sh "ssh -i /c/Users/Stuliche/.jenkins/privatekey/secret.key akumar39@lena088.jcpenney.com exit"
             }
+			post {
+						success {
+							sh "echo DTFILEPP:SUCCESS >> ${env.FILEPATH}"
+						}
+						failure{
+							sh "echo DTFILEPP:FAILURE >> ${env.FILEPATH}"
+						}
+			}		
         }
 		
 		stage('DTLEPSKU'){

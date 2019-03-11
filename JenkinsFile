@@ -9,7 +9,7 @@ stages{
 			
 			when {
 				expression {
-					sh "${env.RESULT}=(cat /c/Users/Stuliche/Desktop/JenkinsFile/Pipeline-Automation/scripts/jobFlag.txt | grep 'DTFILEPP' |awk -F ':' '{ print $2 }')"
+					sh "${env.RESULT}=(cat '/c/Users/Stuliche/Desktop/JenkinsFile/Pipeline-Automation/scripts/jobFlag.txt' | grep 'DTFILEPP' |awk -F ':' '{ print $2 }')"
 					//sh "cat ${env.FILEPATH} | grep 'DTFILEPP'"
 					//result = readFile('DTFILEPP').trim()
 					return ${env.RESULT} != 'SUCCESS';

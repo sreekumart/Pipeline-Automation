@@ -5,9 +5,9 @@ stages{
         stage('DTLEPS3F'){
             steps {
 				sh "echo DTLEPS3F"
-				sh "job is executing......"
+				sh "echo job is executing......"
 				sh "sleep 2m"
-				sh "execution completed..exiting"
+				sh "echo execution completed exiting"
             }
 			post {
 				failure {

@@ -14,7 +14,7 @@ stages{
 					sh "pwd"
 					RESULT=readFile('DTFILEPP').trim()
 					echo RESULT
-					return RESULT != 'SUCCESS';
+					return RESULT == 'SUCCESS';
 				}
 			}
             steps {

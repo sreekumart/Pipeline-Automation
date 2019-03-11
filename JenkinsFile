@@ -58,24 +58,76 @@ stages{
         stage ('POST-DTLEPSKU'){
             parallel{
                 stage ('DTLIBP01'){
+					when {
+						expression {
+							sh "cat ${env.FILEPATH} | grep 'DTLIBP01' | awk -F ':' '{ print \$2 }' > ${RESULTPATH}/DTLIBP01"
+							sh "pwd"
+							RESULT=readFile("${env.FPATH}/DTLIBP01").trim()
+							echo RESULT
+							return RESULT != 'SUCCESS';
+						}
+					}
                     steps {
                         sh "/c/Users/Stuliche/Desktop/JenkinsFile/Pipeline-Automation/scripts/hello.sh"
                     }
+					post {
+						success {
+							sh "echo DTLIBP01:SUCCESS >> ${env.FILEPATH}"
+						}
+						failure{
+							sh "echo DTLIBP01:FAILURE >> ${env.FILEPATH}"
+						}
+					}	
                 }
 
-				stage ('DTLEP3SF'){
+				stage ('DTLEPS3F'){
+					when {
+						expression {
+							sh "cat ${env.FILEPATH} | grep 'DTLEPS3F' | awk -F ':' '{ print \$2 }' > ${RESULTPATH}/DTLEPS3F"
+							sh "pwd"
+							RESULT=readFile("${env.FPATH}/DTLEPS3F").trim()
+							echo RESULT
+							return RESULT != 'SUCCESS';
+						}
+					}
                     steps {
 						script {
-							build (job: 'DTLEPS3F', wait: false,propagate: false)
+							//build (job: 'DTLEPS3F', wait: true,propagate: false)
+							build (job: 'DTLEPS3F', wait: true,propagate: false)
                         }
                     }
+					post {
+						success {
+							sh "echo DTLEPS3F:SUCCESS >> ${env.FILEPATH}"
+						}
+						failure{
+							sh "echo DTLEPS3F:FAILURE >> ${env.FILEPATH}"
+						}
+					}
                 }
 				
                 stage ('DTLEPCOL'){
+					when {
+						expression {
+							sh "cat ${env.FILEPATH} | grep 'DTLEPCOL' | awk -F ':' '{ print \$2 }' > ${RESULTPATH}/DTLEPCOL"
+							sh "pwd"
+							RESULT=readFile("${env.FPATH}/DTLEPCOL").trim()
+							echo RESULT
+							return RESULT != 'SUCCESS';
+						}
+					}
                     steps {
 						sh "echo this job will fail"
                         sh "exit 1"
                     }
+					post {
+						success {
+							sh "echo DTLEPCOL:SUCCESS >> ${env.FILEPATH}"
+						}
+						failure{
+							sh "echo DTLEPCOL:FAILURE >> ${env.FILEPATH}"
+						}
+					}
                 }
             }
         }

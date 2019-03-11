@@ -9,8 +9,9 @@ stages{
 			
 			when {
 				expression {
-					sh "${env.RESULT}=(cat jobFlag.txt | grep "DTFILEPP" |awk -F ':' '{ print $2 }')"
-					return env.RESULT != 'SUCCESS';
+					sh "cat jobFlag.txt | grep "DTFILEPP" |awk -F ':' '{ print $2 }' > DTFILEPP"
+					result = readFile('commandResult').trim()
+					return result != 'SUCCESS';
 
 				}
 			}

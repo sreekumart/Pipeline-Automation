@@ -9,7 +9,7 @@ stages{
 			
 			when {
 				expression {
-					sh "${env.RESULT}=$(cat jobFlag.txt | grep "DTFILEPP" |awk -F ':' '{ print $2 }')"
+					sh "${env.RESULT}=(cat jobFlag.txt | grep "DTFILEPP" |awk -F ':' '{ print $2 }')"
 					return env.RESULT != 'SUCCESS';
 
 				}

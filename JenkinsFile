@@ -1,9 +1,5 @@
 pipeline {
     agent any
-	environment {
-        //This variable need be tested as string
-        
-    }
 
 stages{
         stage('DTFILEPP'){

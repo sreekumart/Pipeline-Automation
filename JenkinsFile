@@ -13,6 +13,7 @@ stages{
 					sh "cat ${env.FILEPATH} | grep 'DTFILEPP' | awk -F ':' '{ print \$2 }' > DTFILEPP"
 					sh "pwd"
 					RESULT=readFile('DTFILEPP').trim()
+					echo ${RESULT}
 					return ${RESULT} != 'SUCCESS';
 				}
 			}

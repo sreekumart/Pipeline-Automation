@@ -1,5 +1,9 @@
 pipeline {
     agent any
+	environment {
+        //This variable need be tested as string
+        doError = '1'
+    }
 
 stages{
         stage('DTFILEPP'){
@@ -26,7 +30,12 @@ stages{
 
 				stage ('DTLEP3SF'){
                     steps {
-                        build (job: 'DTLEPS3F', wait: false,propagate: false)
+						b = build (job: 'DTLEPS3F', wait: false,propagate: false).result
+						if(b == 'FAILURE') {
+							echo "First job failed"
+							currentBuild.result = 'UNSTABLE' // of FAILURE
+						}
+                        
                     }
                 }
 				

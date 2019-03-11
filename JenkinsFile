@@ -3,18 +3,18 @@ pipeline {
 	environment {
 		FILEPATH = "/c/Users/Stuliche/Desktop/JenkinsFile/Pipeline-Automation/scripts/jobFlag.txt"
 		RESULTPATH = "/c/Users/Stuliche/Desktop/JenkinsFile/Pipeline-Automation/scripts"
+		FPATH = "C:/Users/Stuliche/Desktop/JenkinsFile/Pipeline-Automation/scripts"
 	}
 stages{
         stage('DTFILEPP'){
 			
 			when {
 				expression {
-					//sh "cat ${env.FILEPATH} | grep 'DTFILEPP' | awk -F ':' '{ print $2 }' > //"${env.RESULTPATH}/DTFILEPP.txt\"\"
-					sh "cat ${env.FILEPATH} | grep 'DTFILEPP' | awk -F ':' '{ print \$2 }' > DTFILEPP"
+					sh "cat ${env.FILEPATH} | grep 'DTFILEPP' | awk -F ':' '{ print \$2 }' > ${RESULTPATH}/DTFILEPP"
 					sh "pwd"
-					RESULT=readFile('DTFILEPP').trim()
+					RESULT=readFile("${env.FPATH}/DTFILEPP").trim()
 					echo RESULT
-					return RESULT == 'SUCCESS';
+					return RESULT != 'SUCCESS';
 				}
 			}
             steps {
@@ -32,10 +32,27 @@ stages{
         }
 		
 		stage('DTLEPSKU'){
+			when {
+				expression {
+					sh "cat ${env.FILEPATH} | grep 'DTLEPSKU' | awk -F ':' '{ print \$2 }' > ${RESULTPATH}/DTLEPSKU"
+					sh "pwd"
+					RESULT=readFile("${env.FPATH}/DTLEPSKU").trim()
+					echo RESULT
+					return RESULT != 'SUCCESS';
+				}
+			}
             steps {
                 sh "ssh -i /c/Users/Stuliche/.jenkins/privatekey/secret.key akumar39@lena088.jcpenney.com './jenkins/jobs/step1.sh'"
 				sh "ssh -i /c/Users/Stuliche/.jenkins/privatekey/secret.key akumar39@lena088.jcpenney.com exit"
             }
+			post {
+						success {
+							sh "echo DTLEPSKU:SUCCESS >> ${env.FILEPATH}"
+						}
+						failure{
+							sh "echo DTLEPSKU:FAILURE >> ${env.FILEPATH}"
+						}
+			}	
         }
 
         stage ('POST-DTLEPSKU'){

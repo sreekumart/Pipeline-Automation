@@ -1,5 +1,5 @@
 pipeline{
-	agent any{
+	agent any
 		stage('SLEEPJOB'){
 			steps{
 				sh "ssh -i /c/Users/akumar39/.jenkins/sshkey/mysshkey.key akumar39@lena088.jcpenney.com './jenkins/jobs/sleep1hr.sh'"
@@ -7,5 +7,5 @@ pipeline{
 			}
 		
 		}
-	}
+	
 }

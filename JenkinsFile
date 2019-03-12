@@ -117,8 +117,8 @@ stages{
 						}
 					}
                     steps {
-						sh "echo this job will fail"
-                        sh "exit 1"
+						sh "echo this job will not fail fail"
+                        sh "exit 0"
                     }
 					post {
 						success {
@@ -141,7 +141,7 @@ stages{
                     }
                 }
             }
-        }
+        }***/
 		
 		stage('DTLEPREC'){
 			steps {
@@ -150,7 +150,7 @@ stages{
 		
 		}
 
-		stage('POST-DTLEPREC'){
+		/***stage('POST-DTLEPREC'){
 		
 			parallel{
 				stage('DTLEPSEO'){

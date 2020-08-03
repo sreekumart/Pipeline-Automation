@@ -18,8 +18,8 @@ stages{
 				}
 			}
             steps {
-				sh "ssh -i /c/Users/Stuliche/.jenkins/privatekey/secret.key akumar39@lena088.jcpenney.com './jenkins/jobs/step1.sh'"
-				sh "ssh -i /c/Users/Stuliche/.jenkins/privatekey/secret.key akumar39@lena088.jcpenney.com exit"
+				sh "ssh -i /c/Users/Stuliche/.jenkins/privatekey/secret.key abc@host.xyz.com './jenkins/jobs/step1.sh'"
+				sh "ssh -i /c/Users/Stuliche/.jenkins/privatekey/secret.key abc@host.xyz.com exit"
             }
 			post {
 						success {
@@ -42,8 +42,8 @@ stages{
 				}
 			}
             steps {
-                sh "ssh -i /c/Users/Stuliche/.jenkins/privatekey/secret.key akumar39@lena088.jcpenney.com './jenkins/jobs/step1.sh'"
-				sh "ssh -i /c/Users/Stuliche/.jenkins/privatekey/secret.key akumar39@lena088.jcpenney.com exit"
+                sh "ssh -i /c/Users/Stuliche/.jenkins/privatekey/secret.key abc@host.xyz.com './jenkins/jobs/step1.sh'"
+				sh "ssh -i /c/Users/Stuliche/.jenkins/privatekey/secret.key abc@host.xyz.com exit"
             }
 			post {
 						success {
